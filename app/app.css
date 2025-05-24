@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+html,
+body {
+  @apply bg-white dark:bg-gray-950;
+
+  @media (prefers-color-scheme: dark) {
+    color-scheme: dark;
+  }
+}
+
+.nav-item {
+  @apply  cursor-pointer transition duration-300;
+}
+
+.my-account {
+  @apply text-lg md:text-2xl hover:text-(--tertiary-color) cursor-pointer transition duration-300;
+}
+
+.skill-container {
+  @apply flex flex-col gap-2 md:gap-1 items-center font-semibold text-base md:text-sm hover:text-(--tertiary-color) hover:-translate-y-2 transition duration-300 cursor-pointer;
+}
+
+.skill-icon {
+  @apply text-4xl md:text-2xl;
+}
+
+.project-card-container {
+  @apply w-full self-center flex flex-col-reverse gap-5 justify-between px-5;
+}
+
+:root {
+  --primary-color: #161616;
+  --secondary-color: #E4643F;
+  --tertiary-color: #E63E21;
+}
+
+.page {
+  view-transition-class: page;
+}
+
+::view-transition-old(root), ::view-transition-new(root) {
+  animation-duration: 500ms;
+  animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1); /* Ease out */
+  animation-fill-mode: both;
+}
+
+::view-transition-old(root) {
+  animation-name: fadeOut;
+  transform-origin: left;
+}
+
+::view-transition-new(root) {
+  animation-name: fadeIn 0.5s;
+  transform-origin: left;
+}
+
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0px) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(1.02);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0px) scale(1);
+  }
+}
+
+/* transition: duration: 1, ease"0.22 1 0.36 1" */
