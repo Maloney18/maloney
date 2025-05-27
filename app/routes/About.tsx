@@ -6,6 +6,7 @@ import { TbBrandRedux } from "react-icons/tb"
 import AboutImg from '../assets/about-me.png'
 import type { Route } from "./+types/About";
 import { motion } from 'framer-motion';
+import React from 'react'
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -32,9 +33,19 @@ const About = () => {
 
   const aboutMe="I'm a frontend developer with over 3 years of hands-on experience turning complex ideas into seamless, user-focused interfaces. I specialize in crafting pixel-perfect, responsive designs that not only look great but perform flawlessly across devices. Beyond code, I thrive in collaborative environments, communicating clearly, solving problems with intent, and adapting quickly to new challenges. Whether it's aligning with design teams or fine-tuning performance, I bring a balance of technical precision and team-oriented mindset to every project I work on."
 
+  const animatedLetters = aboutMe.split('').map((letter, idx) => {
+    return (
+      <span key={`${aboutMe}-${idx}`} className='relative'>
+        <motion.span initial={{opacity: 0}} animate={{opacity: 1}} transition={{delay: idx * 0.08, duration: 0, ease: 'easeInOut'}}>{letter}</motion.span>
+        <motion.span initial={{opacity: 0}} animate={{opacity: [0,1,0]}} transition={{times: [0, 0.1, 1], delay: idx * 0.08, duration: 0.125, ease: 'easeInOut'}} className='absolute bottom-[3px] left-[1px] right-0 top-[3px] bg-(--secondary-color)'/>        
+      </span>
+    )
+  })
+
+
   const renderSkills = () => {
     return skills.map((skill, index) => (
-      <motion.div initial={{translateX: -20, opacity: 0}} animate={{translateX: 0, opacity: 1}} transition={{duration: 0.08, type: 'spring', damping: 1, delay: index / 2, mass: 1}} key={index} className='skill-container'>
+      <motion.div initial={{translateX: -20, opacity: 0}} animate={{translateX: 0, opacity: 1}} transition={{duration: 0.08, type: 'spring', stiffness: 300, damping: 2, delay: index / 2}} key={index} className='skill-container'>
         {skill.icon}
         <p className='w-max'>{skill.name}</p>
       </motion.div>
@@ -51,15 +62,13 @@ const About = () => {
         <div className='flex-1 flex flex-col gap-5'>
           <p className='font-semibold lg:font-bold text-2xl'>About me</p>
 
-          <p className='font-normal text-sm lg:text-base leading-8'>
-            {
-              aboutMe.split('').map((letter, index) => (
-                <motion.span key={`${aboutMe}-${index}`} className='relative'>
-                  <motion.span initial={{opacity: 0}} animate={{opacity: 1}} transition={{delay: index * 0.05, duration: 0, ease: 'easeInOut'}}>{letter}</motion.span>
-                  <motion.span initial={{opacity: 0}} animate={{opacity: [0,1,0]}} transition={{times: [0, 0.1, 1], delay: index * 0.05, duration: 0.125, ease: 'easeInOut'}} className='absolute bottom-[3px] left-[1px] right-0 top-[3px] bg-(--secondary-color)'/>
-                </motion.span>
+          <p className='font-normal text-sm lg:text-base leading-8 text-justify'>
+            {/* {
+              eachWord.map((word, index) => (
+                
               ))
-            }
+            } */}
+            {animatedLetters}
           </p>
         </div>
       </div>
