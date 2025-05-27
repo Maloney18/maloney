@@ -45,7 +45,7 @@ const About = () => {
 
   const renderSkills = () => {
     return skills.map((skill, index) => (
-      <motion.div initial={{translateX: -20, opacity: 0}} animate={{translateX: 0, opacity: 1}} transition={{duration: 0.08, type: 'spring', stiffness: 300, damping: 2, delay: index / 2}} key={index} className='skill-container'>
+      <motion.div initial={{translateX: -20, opacity: 0}} animate={{translateX: 0, opacity: 1}} transition={{duration: 0.08, type: 'spring', stiffness: 300, damping: 5, delay: index / 2}} key={index} className='skill-container'>
         {skill.icon}
         <p className='w-max'>{skill.name}</p>
       </motion.div>

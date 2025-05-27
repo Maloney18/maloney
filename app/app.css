@@ -14,6 +14,10 @@ body {
   }
 }
 
+.hero-btn {
+  @apply font-semibold text-xs md:text-sm max-w-[150px] py-3 rounded-lg cursor-pointer text-white transition duration-300 px-1.5;
+}
+
 .nav-item {
   @apply  cursor-pointer transition duration-300;
 }
