@@ -36,7 +36,7 @@ const {title, description, liveUrl, githubUrl, tools, snapshot} = projectDetails
             ))}
           </div>
 
-          <p className="text-xs md:text-sm w-full md:w-2/3 font-normal text-justify">{description}</p>
+          <p className="text-sm w-full md:w-2/3 font-normal md:text-justify">{description}</p>
         </div>
 
         <div className={`flex gap-5 items-center ${reverse ? 'self-end' : 'self-start'}`}>
